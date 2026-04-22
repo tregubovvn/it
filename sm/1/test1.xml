@@ -1,6 +1,6 @@
 <test>
   <question>
-    <image>https://tregubovvn.github.io/it/Tregubovvn.png</image>
+    <image>https://tregubovvn.github.io/it/sm/1/1.png</image>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
@@ -13,9 +13,9 @@
   </question>
 
 <question>
-    <image>https://tregubovvn.github.io/it/Tregubovvn.png</image>
-    <rows>3</rows>
-    <cols>3</cols>
+    <image>https://tregubovvn.github.io/it/sm/1/2.png</image>
+    <rows>4</rows>
+    <cols>4</cols>
     <timeExcellent>60</timeExcellent>
     <timeGood>120</timeGood>
     <answers correct="2">
