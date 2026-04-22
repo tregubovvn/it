@@ -5,10 +5,10 @@
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
     <timeGood>120</timeGood>
-    <answers correct="2">
-      <answer>Название 1</answer>
-      <answer>Правильное название</answer>
-      <answer>Название 3</answer>
+    <answers correct="0">
+      <answer>пространственная система модульных плоскостей</answer>
+      <answer>пространственная система </answer>
+      <answer>пространственная система линейных плоскостей</answer>
     </answers>
   </question>
 
@@ -18,10 +18,10 @@
     <cols>4</cols>
     <timeExcellent>60</timeExcellent>
     <timeGood>120</timeGood>
-    <answers correct="2">
-      <answer>Название 1</answer>
-      <answer>Правильное название</answer>
-      <answer>Название 3</answer>
+    <answers correct="1">
+      <answer>Сергей</answer>
+      <answer>Владимир</answer>
+      <answer>Иван</answer>
     </answers>
   </question>
 
