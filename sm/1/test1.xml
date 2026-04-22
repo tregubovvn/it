@@ -1,0 +1,30 @@
+<test>
+  <question>
+    <image>https://tregubovvn.github.io/it/Tregubovvn.png</image>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="2">
+      <answer>Название 1</answer>
+      <answer>Правильное название</answer>
+      <answer>Название 3</answer>
+    </answers>
+  </question>
+
+<question>
+    <image>https://tregubovvn.github.io/it/Tregubovvn.png</image>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="2">
+      <answer>Название 1</answer>
+      <answer>Правильное название</answer>
+      <answer>Название 3</answer>
+    </answers>
+  </question>
+
+
+  
+</test>
