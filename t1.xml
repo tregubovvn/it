@@ -1,0 +1,16 @@
+<test>
+  <question>
+    <image>https://tregubovvn.github.io/it/1.png</image>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="0">
+      <answer>Социально-экономический институт </answer>
+      <answer>Институт машиностроения, материаловедения и транспорта </answer>
+      <answer>Институт электронной техники и приборостроения</answer>
+    </answers>
+  </question>
+
+ 
+</test>
