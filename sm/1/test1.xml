@@ -1,6 +1,8 @@
 <test>
   <question>
     <image>https://tregubovvn.github.io/it/sm/1/1.png</image>
+    <task>Соберите изображение и укажите, какой город изображен на картинке.</task>
+
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
@@ -14,6 +16,8 @@
 
 <question>
     <image>https://tregubovvn.github.io/it/sm/1/2.png</image>
+    <task>Соберите изображение и укажите, какой город изображен на картинке.</task>
+
     <rows>4</rows>
     <cols>4</cols>
     <timeExcellent>60</timeExcellent>
