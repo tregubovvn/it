@@ -305,6 +305,14 @@
                     <div id="progressBar" class="progress-fill" style="width: 0%"></div>
                 </div>
 
+                <!-- Task Description Block (Moved to Top) -->
+                <div class="max-w-5xl mx-auto mb-6">
+                    <div class="p-4 md:p-5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-lg">
+                        <h3 class="text-sm uppercase tracking-wide text-[var(--accent)] mb-2 font-semibold">Задание</h3>
+                        <p id="taskDescription" class="text-lg md:text-xl font-medium text-[var(--fg)] leading-relaxed">Задание не указано</p>
+                    </div>
+                </div>
+
                 <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8 items-start">
                     <!-- Puzzle Area -->
                     <div>
@@ -326,12 +334,7 @@
 
                     <!-- Answers Area -->
                     <div>
-                        <div class="mb-6 p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)]">
-                            <h3 class="text-sm uppercase tracking-wide text-[var(--muted)] mb-2">Задание</h3>
-                            <p id="taskDescription" class="text-lg font-medium text-[var(--fg)]">Задание не указано</p>
-                        </div>
-
-                        <h2 class="text-lg font-semibold mb-4">Выберите название</h2>
+                        <h2 class="text-lg font-semibold mb-4">Выберите правильный ответ</h2>
                         <div id="answersList" class="space-y-3 mb-6"></div>
                         
                         <div class="pt-4 border-t border-[var(--border)]">
@@ -717,20 +720,20 @@
 
                 return `
                     <div class="py-4">
-                        <div class="flex gap-4 items-start">
+                        <div class="flex gap-4 items-start mb-3">
                             <img src="${a.image}" class="w-20 h-20 rounded object-cover flex-shrink-0" onerror="this.style.display='none'">
-                            <div class="flex-1 min-w-0 mb-2">
-                                <p class="text-sm text-[var(--muted)] mb-1"><strong>Задание:</strong> ${q.task}</p>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm text-[var(--muted)]"><strong>Задание:</strong> ${q.task}</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-2 mt-2">
+                        <div class="flex items-center gap-2 mb-2">
                             <span class="font-medium">Вопрос ${i + 1}</span>
                             <span class="text-xs px-2 py-0.5 rounded ${a.puzzleOk && a.answerOk ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}">
                                 ${a.puzzleOk && a.answerOk ? 'Верно' : 'Ошибка'}
                             </span>
                             <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg)] ${gClass}">${gLabels[a.grade]}</span>
                         </div>
-                        <p class="text-sm text-[var(--muted)] mt-1">Ваш ответ: <span class="${a.answerOk ? 'text-[var(--accent)]' : 'text-[var(--danger)]'}">${selectedAnswerText}</span></p>
+                        <p class="text-sm text-[var(--muted)]">Ваш ответ: <span class="${a.answerOk ? 'text-[var(--accent)]' : 'text-[var(--danger)]'}">${selectedAnswerText}</span></p>
                         ${!a.answerOk ? `<p class="text-sm text-[var(--muted)]">Правильный ответ: <span class="text-[var(--accent)]">${correctAnswerText}</span></p>` : ''}
                         <p class="text-xs text-[var(--muted)] mt-1 mono">Время: ${Math.floor(a.time / 60)}:${(a.time % 60).toString().padStart(2, '0')}</p>
                     </div>
@@ -802,7 +805,6 @@
             dom.btnRestart.addEventListener('click', () => {
                 showScreen(dom.screenStart);
                 dom.errorMsg.classList.add('hidden');
-                // Reset inputs? Maybe not, keep the name for convenience or clear? Let's clear.
                 dom.inputSurname.value = '';
                 dom.inputName.value = '';
                 state.student = { surname: '', name: '' };
