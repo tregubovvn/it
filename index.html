@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тестирование студентов — Сборка</title>
+    <title>Тестирование студентов — Сборка изображений</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -133,18 +133,22 @@
             background: var(--accent-dim);
         }
 
-        .drop-zone {
-            border: 2px dashed var(--border);
-            border-radius: 16px;
-            padding: 60px 40px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            background: var(--card);
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--fg);
+            font-size: 16px;
+            transition: border-color 0.2s;
+            outline: none;
         }
-        .drop-zone:hover, .drop-zone.drag-over {
+        .input-field:focus {
             border-color: var(--accent);
-            background: var(--accent-dim);
+        }
+        .input-field::placeholder {
+            color: var(--muted);
         }
 
         .answer-btn {
@@ -233,45 +237,34 @@
 
         <!-- Start Screen -->
         <section id="screenStart" class="screen active flex-1 flex items-center justify-center p-6">
-            <div class="w-full max-w-2xl">
-                <div class="text-center mb-12 animate-in">
+            <div class="w-full max-w-lg">
+                <div class="text-center mb-10 animate-in">
                     <p class="text-sm text-[var(--muted)] uppercase tracking-widest mb-3">Система тестирования</p>
                     <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
                         Сборка <span class="text-[var(--accent)]">изображений</span>
                     </h1>
-                    <p class="text-[var(--muted)] text-lg max-w-md mx-auto">
-                        Соберите пазл и определите объект. Результат зависит от правильности и времени.
-                    </p>
                 </div>
 
-                <div class="drop-zone animate-in delay-1" id="dropZone">
-                    <input type="file" id="fileInput" accept=".xml" class="hidden">
-                    <svg class="w-14 h-14 mx-auto mb-4 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                    </svg>
-                    <p class="text-lg font-medium mb-1">Загрузите XML-файл</p>
-                    <p class="text-[var(--muted)] text-sm">Перетащите сюда или кликните для выбора</p>
+                <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-8 animate-in delay-1">
+                    <h2 class="text-xl font-semibold mb-6 text-center">Введите ваши данные</h2>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-sm text-[var(--muted)] mb-2">Фамилия</label>
+                            <input type="text" id="inputSurname" class="input-field" placeholder="Иванов">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-[var(--muted)] mb-2">Имя</label>
+                            <input type="text" id="inputName" class="input-field" placeholder="Иван">
+                        </div>
+                    </div>
+
+                    <button id="btnStartTest" class="btn btn-accent w-full">Начать тестирование</button>
+                    <p id="errorMsg" class="text-[var(--danger)] text-sm mt-4 text-center hidden"></p>
                 </div>
 
-                <div class="mt-6 text-center text-sm text-[var(--muted)] animate-in delay-2">
-                    <p>Или передайте путь к файлу через URL-параметр: <code class="mono bg-[var(--card)] px-2 py-1 rounded text-xs">?file=URL</code></p>
-                </div>
-
-                <div class="mt-10 bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 animate-in delay-3">
-                    <h3 class="font-semibold mb-3 text-sm uppercase tracking-wide text-[var(--muted)]">Структура XML-файла</h3>
-                    <pre class="mono text-xs bg-[var(--bg)] p-3 rounded-lg overflow-x-auto text-[var(--muted)] leading-relaxed"><code>&lt;test&gt;
-  &lt;question&gt;
-    &lt;image&gt;URL_картинки&lt;/image&gt;
-    &lt;rows&gt;3&lt;/rows&gt;
-    &lt;cols&gt;3&lt;/cols&gt;
-    &lt;timeExcellent&gt;60&lt;/timeExcellent&gt;
-    &lt;timeGood&gt;120&lt;/timeGood&gt;
-    &lt;answers correct="0"&gt;
-      &lt;answer&gt;Правильный ответ&lt;/answer&gt;
-      &lt;answer&gt;Вариант 2&lt;/answer&gt;
-    &lt;/answers&gt;
-  &lt;/question&gt;
-&lt;/test&gt;</code></pre>
+                <div class="mt-6 text-center text-xs text-[var(--muted)] animate-in delay-2">
+                    <p>Для запуска теста используйте ссылку с параметром <code class="mono bg-[var(--card)] px-1 rounded">?file=URL_XML</code></p>
                 </div>
             </div>
         </section>
@@ -333,6 +326,11 @@
 
                     <!-- Answers Area -->
                     <div>
+                        <div class="mb-6 p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)]">
+                            <h3 class="text-sm uppercase tracking-wide text-[var(--muted)] mb-2">Задание</h3>
+                            <p id="taskDescription" class="text-lg font-medium text-[var(--fg)]">Задание не указано</p>
+                        </div>
+
                         <h2 class="text-lg font-semibold mb-4">Выберите название</h2>
                         <div id="answersList" class="space-y-3 mb-6"></div>
                         
@@ -352,13 +350,18 @@
                     <p class="text-[var(--muted)]">Анализ прохождения теста</p>
                 </div>
 
+                <div class="result-card text-center mb-8 animate-in delay-1">
+                    <p class="text-sm text-[var(--muted)] mb-1">Студент</p>
+                    <p id="resStudentName" class="text-2xl font-bold">Фамилия Имя</p>
+                </div>
+
                 <div class="grid sm:grid-cols-3 gap-4 mb-8">
                     <div class="result-card text-center animate-in delay-1">
                         <p class="text-xs text-[var(--muted)] uppercase tracking-wide mb-1">Правильных</p>
                         <p id="resCorrect" class="text-3xl font-bold text-[var(--accent)]">0/0</p>
                     </div>
                     <div class="result-card text-center animate-in delay-2">
-                        <p class="text-xs text-[var(--muted)] uppercase tracking-wide mb-1">Итоговая оценка</p>
+                        <p class="text-xs text-[var(--muted)] uppercase tracking-wide mb-1">Оценка</p>
                         <p id="resGrade" class="text-3xl font-bold">-</p>
                     </div>
                     <div class="result-card text-center animate-in delay-3">
@@ -374,7 +377,6 @@
 
                 <div class="flex justify-center gap-4 mt-8 animate-in delay-3">
                     <button id="btnRestart" class="btn btn-accent">Пройти заново</button>
-                    <button id="btnNewTest" class="btn btn-ghost">Новый тест</button>
                 </div>
             </div>
         </section>
@@ -390,9 +392,10 @@
             timer: null,
             time: 0,
             selected: null,
-            positions: [], // Maps visual position index -> original piece ID
-            pieceElements: [], // Stores DOM elements indexed by original ID
-            draggingId: null
+            positions: [],
+            pieceElements: [],
+            draggingId: null,
+            student: { surname: '', name: '' }
         };
 
         // === DOM ===
@@ -401,23 +404,26 @@
             screenLoading: document.getElementById('screenLoading'),
             screenTest: document.getElementById('screenTest'),
             screenResults: document.getElementById('screenResults'),
-            dropZone: document.getElementById('dropZone'),
-            fileInput: document.getElementById('fileInput'),
+            inputSurname: document.getElementById('inputSurname'),
+            inputName: document.getElementById('inputName'),
+            btnStartTest: document.getElementById('btnStartTest'),
+            errorMsg: document.getElementById('errorMsg'),
             qNumber: document.getElementById('qNumber'),
             timerCircle: document.getElementById('timerCircle'),
             timerText: document.getElementById('timerText'),
             progressBar: document.getElementById('progressBar'),
             puzzleGrid: document.getElementById('puzzleGrid'),
+            taskDescription: document.getElementById('taskDescription'),
             answersList: document.getElementById('answersList'),
             btnShuffle: document.getElementById('btnShuffle'),
             btnSubmit: document.getElementById('btnSubmit'),
             btnExit: document.getElementById('btnExit'),
-            btnRestart: document.getElementById('btnRestart'),
-            btnNewTest: document.getElementById('btnNewTest'),
+            resStudentName: document.getElementById('resStudentName'),
             resCorrect: document.getElementById('resCorrect'),
             resGrade: document.getElementById('resGrade'),
             resTime: document.getElementById('resTime'),
-            resDetails: document.getElementById('resDetails')
+            resDetails: document.getElementById('resDetails'),
+            btnRestart: document.getElementById('btnRestart')
         };
 
         // === Navigation ===
@@ -431,7 +437,7 @@
             const parser = new DOMParser();
             const xml = parser.parseFromString(text, 'text/xml');
             const error = xml.querySelector('parsererror');
-            if (error) throw new Error('Ошибка XML');
+            if (error) throw new Error('Ошибка парсинга XML');
 
             const questions = [];
             xml.querySelectorAll('question').forEach(q => {
@@ -440,12 +446,13 @@
                 const cols = Math.max(1, parseInt(q.querySelector('cols')?.textContent) || 3);
                 const tEx = Math.max(1, parseInt(q.querySelector('timeExcellent')?.textContent) || 60);
                 const tGood = Math.max(1, parseInt(q.querySelector('timeGood')?.textContent) || 120);
+                const task = q.querySelector('task')?.textContent?.trim() || 'Соберите изображение и выберите правильный ответ.';
                 const ansNode = q.querySelector('answers');
                 const correctIdx = parseInt(ansNode?.getAttribute('correct')) || 0;
                 const answers = Array.from(ansNode?.querySelectorAll('answer') || []).map(a => a.textContent);
 
                 if (img && answers.length > 0) {
-                    questions.push({ image: img, rows, cols, timeExcellent: tEx, timeGood: tGood, answers, correctIdx });
+                    questions.push({ image: img, rows, cols, timeExcellent: tEx, timeGood: tGood, task, answers, correctIdx });
                 }
             });
             return questions;
@@ -497,7 +504,7 @@
                 const piece = document.createElement('div');
                 piece.className = 'puzzle-piece';
                 piece.draggable = true;
-                piece.dataset.id = i; // Original ID
+                piece.dataset.id = i;
                 
                 const row = Math.floor(i / cols);
                 const col = i % cols;
@@ -515,7 +522,7 @@
                 piece.addEventListener('dragleave', onDragLeave);
                 piece.addEventListener('drop', onDrop);
 
-                state.pieceElements[i] = piece; // Store reference by original ID
+                state.pieceElements[i] = piece;
                 dom.puzzleGrid.appendChild(piece);
             }
 
@@ -534,11 +541,10 @@
         function renderPuzzle() {
             const fragment = document.createDocumentFragment();
             
-            // state.positions is an array where index = visual position, value = original piece ID
             state.positions.forEach((originalId, visualPos) => {
                 const el = state.pieceElements[originalId];
                 if (el) {
-                    el.dataset.pos = visualPos; // Update current visual position
+                    el.dataset.pos = visualPos;
                     fragment.appendChild(el);
                 }
             });
@@ -581,13 +587,11 @@
 
             if (draggedId === null || isNaN(targetId) || draggedId === targetId) return;
 
-            // Find visual positions of both pieces in the state.positions array
             const fromVisualPos = state.positions.indexOf(draggedId);
             const toVisualPos = state.positions.indexOf(targetId);
 
             if (fromVisualPos === -1 || toVisualPos === -1) return;
 
-            // Swap the IDs in the positions array
             [state.positions[fromVisualPos], state.positions[toVisualPos]] = 
             [state.positions[toVisualPos], state.positions[fromVisualPos]];
 
@@ -602,6 +606,10 @@
         // === Answers ===
         function initAnswers() {
             const q = state.questions[state.current];
+            
+            // Update task description
+            dom.taskDescription.textContent = q.task || 'Соберите изображение и выберите правильный ответ.';
+            
             dom.answersList.innerHTML = '';
 
             q.answers.forEach((ans, i) => {
@@ -651,6 +659,7 @@
 
             state.answers.push({
                 image: q.image,
+                task: q.task,
                 selected: state.selected,
                 correctIdx: q.correctIdx,
                 puzzleOk,
@@ -682,6 +691,8 @@
         function showResults() {
             showScreen(dom.screenResults);
 
+            dom.resStudentName.textContent = `${state.student.surname} ${state.student.name}`;
+
             const correct = state.answers.filter(a => a.puzzleOk && a.answerOk).length;
             const total = state.answers.length;
             const avgGrade = state.answers.reduce((s, a) => s + a.grade, 0) / total;
@@ -700,57 +711,47 @@
                 const q = state.questions[i];
                 const gClass = a.grade === 5 ? 'grade-5' : a.grade === 4 ? 'grade-4' : a.grade === 3 ? 'grade-3' : 'grade-2';
                 const gLabels = { 5: 'Отлично', 4: 'Хорошо', 3: 'Удовл.', 2: 'Неуд.' };
+                
+                const selectedAnswerText = q.answers[a.selected] || '-';
+                const correctAnswerText = q.answers[q.correctIdx];
+
                 return `
-                    <div class="py-4 flex gap-4 items-start">
-                        <img src="${a.image}" class="w-16 h-16 rounded object-cover flex-shrink-0" onerror="this.style.display='none'">
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="font-medium">Вопрос ${i + 1}</span>
-                                <span class="text-xs px-2 py-0.5 rounded ${a.puzzleOk && a.answerOk ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}">
-                                    ${a.puzzleOk && a.answerOk ? 'Верно' : 'Ошибка'}
-                                </span>
-                                <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg)] ${gClass}">${gLabels[a.grade]}</span>
+                    <div class="py-4">
+                        <div class="flex gap-4 items-start">
+                            <img src="${a.image}" class="w-20 h-20 rounded object-cover flex-shrink-0" onerror="this.style.display='none'">
+                            <div class="flex-1 min-w-0 mb-2">
+                                <p class="text-sm text-[var(--muted)] mb-1"><strong>Задание:</strong> ${q.task}</p>
                             </div>
-                            <p class="text-sm text-[var(--muted)] truncate">Ваш ответ: ${q.answers[a.selected] || '-'}</p>
-                            ${!a.answerOk ? `<p class="text-sm text-[var(--muted)]">Правильно: ${q.answers[q.correctIdx]}</p>` : ''}
-                            <p class="text-xs text-[var(--muted)] mt-1 mono">${Math.floor(a.time / 60)}:${(a.time % 60).toString().padStart(2, '0')}</p>
                         </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="font-medium">Вопрос ${i + 1}</span>
+                            <span class="text-xs px-2 py-0.5 rounded ${a.puzzleOk && a.answerOk ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}">
+                                ${a.puzzleOk && a.answerOk ? 'Верно' : 'Ошибка'}
+                            </span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg)] ${gClass}">${gLabels[a.grade]}</span>
+                        </div>
+                        <p class="text-sm text-[var(--muted)] mt-1">Ваш ответ: <span class="${a.answerOk ? 'text-[var(--accent)]' : 'text-[var(--danger)]'}">${selectedAnswerText}</span></p>
+                        ${!a.answerOk ? `<p class="text-sm text-[var(--muted)]">Правильный ответ: <span class="text-[var(--accent)]">${correctAnswerText}</span></p>` : ''}
+                        <p class="text-xs text-[var(--muted)] mt-1 mono">Время: ${Math.floor(a.time / 60)}:${(a.time % 60).toString().padStart(2, '0')}</p>
                     </div>
                 `;
             }).join('');
         }
 
-        // === File Loading ===
+        // === Logic ===
         async function loadFromURL(url) {
             showScreen(dom.screenLoading);
             try {
                 const res = await fetch(url);
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                if (!res.ok) throw new Error(`Ошибка сети: ${res.status}`);
                 const text = await res.text();
                 state.questions = parseXML(text);
-                if (state.questions.length === 0) throw new Error('Нет вопросов');
+                if (state.questions.length === 0) throw new Error('Вопросы не найдены');
                 startTest();
             } catch (err) {
                 alert('Ошибка загрузки: ' + err.message);
                 showScreen(dom.screenStart);
             }
-        }
-
-        function handleFile(file) {
-            showScreen(dom.screenLoading);
-            const reader = new FileReader();
-            reader.onload = e => {
-                try {
-                    state.questions = parseXML(e.target.result);
-                    if (state.questions.length === 0) throw new Error('Нет вопросов');
-                    startTest();
-                } catch (err) {
-                    alert('Ошибка XML: ' + err.message);
-                    showScreen(dom.screenStart);
-                }
-            };
-            reader.onerror = () => { alert('Ошибка чтения файла'); showScreen(dom.screenStart); };
-            reader.readAsText(file);
         }
 
         function startTest() {
@@ -760,26 +761,52 @@
             loadQuestion();
         }
 
+        function showError(msg) {
+            dom.errorMsg.textContent = msg;
+            dom.errorMsg.classList.remove('hidden');
+        }
+
         // === Init ===
         function init() {
             const urlFile = new URLSearchParams(location.search).get('file');
-            if (urlFile) loadFromURL(urlFile);
 
-            dom.dropZone.onclick = () => dom.fileInput.click();
-            dom.dropZone.ondragover = e => { e.preventDefault(); dom.dropZone.classList.add('drag-over'); };
-            dom.dropZone.ondragleave = () => dom.dropZone.classList.remove('drag-over');
-            dom.dropZone.ondrop = e => {
-                e.preventDefault();
-                dom.dropZone.classList.remove('drag-over');
-                if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-            };
-            dom.fileInput.onchange = e => { if (e.target.files[0]) handleFile(e.target.files[0]); };
+            dom.btnStartTest.addEventListener('click', () => {
+                const surname = dom.inputSurname.value.trim();
+                const name = dom.inputName.value.trim();
 
-            dom.btnShuffle.onclick = shufflePuzzle;
-            dom.btnExit.onclick = () => { stopTimer(); showScreen(dom.screenStart); };
-            dom.btnSubmit.onclick = submitAnswer;
-            dom.btnRestart.onclick = () => startTest();
-            dom.btnNewTest.onclick = () => { location.href = location.pathname; };
+                if (!surname || !name) {
+                    showError('Пожалуйста, введите фамилию и имя');
+                    return;
+                }
+                
+                if (!urlFile) {
+                    showError('Ошибка: в URL не указан файл теста (?file=...)');
+                    return;
+                }
+
+                state.student.surname = surname;
+                state.student.name = name;
+                loadFromURL(urlFile);
+            });
+
+            dom.btnShuffle.addEventListener('click', shufflePuzzle);
+            
+            dom.btnExit.addEventListener('click', () => {
+                stopTimer();
+                showScreen(dom.screenStart);
+                dom.errorMsg.classList.add('hidden');
+            });
+            
+            dom.btnSubmit.addEventListener('click', submitAnswer);
+            
+            dom.btnRestart.addEventListener('click', () => {
+                showScreen(dom.screenStart);
+                dom.errorMsg.classList.add('hidden');
+                // Reset inputs? Maybe not, keep the name for convenience or clear? Let's clear.
+                dom.inputSurname.value = '';
+                dom.inputName.value = '';
+                state.student = { surname: '', name: '' };
+            });
         }
 
         document.addEventListener('DOMContentLoaded', init);
