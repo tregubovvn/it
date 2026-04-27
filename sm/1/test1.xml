@@ -1,7 +1,7 @@
 <test>
   <question>
     <image>https://tregubovvn.github.io/it/sm/1/1.png</image>
-    <task>Соберите изображение и укажите, какой город изображен на картинке.</task>
+    <task>Соберите изображение и укажите, какая система изображена.</task>
 
     <rows>3</rows>
     <cols>3</cols>
@@ -16,7 +16,7 @@
 
 <question>
     <image>https://tregubovvn.github.io/it/sm/1/2.png</image>
-    <task>Соберите изображение и укажите, какой город изображен на картинке.</task>
+    <task>Соберите изображение и укажите, кто изображен на картинке.</task>
 
     <rows>4</rows>
     <cols>4</cols>
