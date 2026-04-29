@@ -542,7 +542,8 @@
      }
     
             dom.previewList.innerHTML = '';
-            state.questions.forEach((q, index) => {
+            
+            shuffled.forEach((q, index) => {
                 const correctAnswer = q.answers[q.correctIdx] || 'Не указан';
                 const item = document.createElement('div');
                 item.className = 'bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 flex items-center gap-4';
