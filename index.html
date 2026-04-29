@@ -533,23 +533,19 @@
         function renderPreview() {
             if (state.questions.length === 0) return;
 
-
-               // Проверяем, что questions существует и это массив (даже пустой)
-    if (!state.questions || !Array.isArray(state.questions) || state.questions.length === 0) {
-        return;
-    }
-                // Создаём копию массива вопросов и перемешиваем её
+<!--
+        // Создаём копию массива вопросов и перемешиваем её
     const shuffled = [...state.questions];
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    
+    ->>
             dom.previewList.innerHTML = '';
 
 
             
-            shuffled.questions.forEach((q, index) => {
+            state.questions.forEach((q, index) => {
                 const correctAnswer = q.answers[q.correctIdx] || 'Не указан';
                 const item = document.createElement('div');
                 item.className = 'bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 flex items-center gap-4';
