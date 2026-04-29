@@ -59,8 +59,20 @@
             transition: opacity 0.4s ease;
         }
         .screen.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
             opacity: 1;
+        }
+
+        /* Make test screen body scrollable only in content area */
+        #screenTest {
+            height: 100vh;
+            overflow: hidden;
+        }
+        #screenTest .test-body {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .puzzle-grid {
@@ -202,6 +214,14 @@
             transition: width 0.4s ease;
         }
 
+        /* Task Card Static */
+        .task-card {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -211,7 +231,6 @@
         }
         .delay-1 { animation-delay: 0.1s; opacity: 0; }
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
-        .delay-3 { animation-delay: 0.3s; opacity: 0; }
 
         .result-card {
             background: var(--card);
@@ -227,6 +246,14 @@
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-secondary); }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        
+        .preview-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
     </style>
 </head>
 <body>
@@ -236,35 +263,43 @@
     <div class="min-h-screen flex flex-col">
 
         <!-- Start Screen -->
-        <section id="screenStart" class="screen active flex-1 flex items-center justify-center p-6">
-            <div class="w-full max-w-lg">
-                <div class="text-center mb-10 animate-in">
-                    <p class="text-sm text-[var(--muted)] uppercase tracking-widest mb-3">Система тестирования</p>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-                        Сборка <span class="text-[var(--accent)]">изображений</span>
-                    </h1>
-                </div>
-
-                <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-8 animate-in delay-1">
-                    <h2 class="text-xl font-semibold mb-6 text-center">Введите ваши данные</h2>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div>
-                            <label class="block text-sm text-[var(--muted)] mb-2">Фамилия</label>
-                            <input type="text" id="inputSurname" class="input-field" placeholder="Иванов">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-[var(--muted)] mb-2">Имя</label>
-                            <input type="text" id="inputName" class="input-field" placeholder="Иван">
-                        </div>
+        <section id="screenStart" class="screen active">
+            <div class="flex-1 overflow-auto p-6">
+                <div class="w-full max-w-2xl mx-auto py-8">
+                    <div class="text-center mb-10 animate-in">
+                        <p class="text-sm text-[var(--muted)] uppercase tracking-widest mb-3">Система тестирования</p>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                            Сборка <span class="text-[var(--accent)]">изображений</span>
+                        </h1>
                     </div>
 
-                    <button id="btnStartTest" class="btn btn-accent w-full">Начать тестирование</button>
-                    <p id="errorMsg" class="text-[var(--danger)] text-sm mt-4 text-center hidden"></p>
-                </div>
+                    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-8 animate-in delay-1">
+                        <h2 class="text-xl font-semibold mb-6 text-center">Введите ваши данные</h2>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <label class="block text-sm text-[var(--muted)] mb-2">Фамилия</label>
+                                <input type="text" id="inputSurname" class="input-field" placeholder="Иванов">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-[var(--muted)] mb-2">Имя</label>
+                                <input type="text" id="inputName" class="input-field" placeholder="Иван">
+                            </div>
+                        </div>
 
-                <div class="mt-6 text-center text-xs text-[var(--muted)] animate-in delay-2">
-                    <p>Для запуска теста используйте ссылку с параметром <code class="mono bg-[var(--card)] px-1 rounded">?file=URL_XML</code></p>
+                        <button id="btnStartTest" class="btn btn-accent w-full">Начать тестирование</button>
+                        <p id="errorMsg" class="text-[var(--danger)] text-sm mt-4 text-center hidden"></p>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div id="previewSection" class="mt-8 hidden animate-in delay-2">
+                        <h3 class="text-lg font-semibold mb-4 text-[var(--muted)]">Содержание теста:</h3>
+                        <div id="previewList" class="space-y-4"></div>
+                    </div>
+
+                    <div class="mt-6 text-center text-xs text-[var(--muted)]">
+                        <p>Для запуска теста используйте ссылку с параметром <code class="mono bg-[var(--card)] px-1 rounded">?file=URL_XML</code></p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -278,11 +313,11 @@
         </section>
 
         <!-- Test Screen -->
-        <section id="screenTest" class="screen flex-1 flex flex-col">
-            <header class="p-4 md:p-6 border-b border-[var(--border)] bg-[var(--bg-secondary)]/50 backdrop-blur">
+        <section id="screenTest" class="screen">
+            <header class="p-4 md:px-6 border-b border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-sm z-10">
                 <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
                     <div class="flex items-center gap-3">
-                        <span class="text-[var(--muted)] text-sm">Вопрос</span>
+                        <span class="text-[var(--muted)] text-sm hidden sm:block">Вопрос</span>
                         <span class="mono font-bold text-xl" id="qNumber">1/1</span>
                     </div>
                     
@@ -300,24 +335,27 @@
                 </div>
             </header>
 
-            <div class="flex-1 overflow-auto p-4 md:p-6">
-                <div class="progress-track mb-6 max-w-5xl mx-auto">
-                    <div id="progressBar" class="progress-fill" style="width: 0%"></div>
-                </div>
-
-                <!-- Task Description Block (Moved to Top) -->
-                <div class="max-w-5xl mx-auto mb-6">
-                    <div class="p-4 md:p-5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-lg">
-                        <h3 class="text-sm uppercase tracking-wide text-[var(--accent)] mb-2 font-semibold">Задание</h3>
-                        <p id="taskDescription" class="text-lg md:text-xl font-medium text-[var(--fg)] leading-relaxed">Задание не указано</p>
+            <!-- Task Block: Static Top -->
+            <div class="task-card z-10">
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex items-center gap-2 mb-1">
+                        <h3 class="text-xs uppercase tracking-wider text-[var(--accent)] font-semibold">Задание</h3>
                     </div>
+                    <p id="taskDescription" class="text-lg md:text-xl font-medium text-[var(--fg)]">Загрузка...</p>
                 </div>
+            </div>
 
+            <div class="progress-track">
+                <div id="progressBar" class="progress-fill" style="width: 0%"></div>
+            </div>
+
+            <!-- Scrollable Body -->
+            <div class="test-body p-4 md:p-6 bg-[var(--bg)]">
                 <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8 items-start">
                     <!-- Puzzle Area -->
                     <div>
                         <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                            <svg class="w-5 h-5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
                             </svg>
                             Соберите изображение
@@ -346,7 +384,7 @@
         </section>
 
         <!-- Results Screen -->
-        <section id="screenResults" class="screen flex-1 p-6 md:p-10 overflow-auto">
+        <section id="screenResults" class="screen flex-1 overflow-auto p-6 md:p-10">
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-10 animate-in">
                     <h1 class="text-3xl md:text-4xl font-bold mb-2">Результаты</h1>
@@ -426,7 +464,9 @@
             resGrade: document.getElementById('resGrade'),
             resTime: document.getElementById('resTime'),
             resDetails: document.getElementById('resDetails'),
-            btnRestart: document.getElementById('btnRestart')
+            btnRestart: document.getElementById('btnRestart'),
+            previewSection: document.getElementById('previewSection'),
+            previewList: document.getElementById('previewList')
         };
 
         // === Navigation ===
@@ -487,6 +527,28 @@
                 dom.timerCircle.style.strokeDashoffset = 251 * (1 - pct);
                 dom.timerCircle.style.stroke = state.time <= q.timeExcellent ? '#22d3ee' : state.time <= q.timeGood ? '#fbbf24' : '#f87171';
             }
+        }
+
+        // === Preview ===
+        function renderPreview() {
+            if (state.questions.length === 0) return;
+
+            dom.previewList.innerHTML = '';
+            state.questions.forEach((q, index) => {
+                const correctAnswer = q.answers[q.correctIdx] || 'Не указан';
+                const item = document.createElement('div');
+                item.className = 'bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 flex items-center gap-4';
+                item.innerHTML = `
+                    <img src="${q.image}" alt="Question ${index+1}" class="preview-img" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%231a2540%22 width=%22100%22 height=%22100%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%235d6b8a%22 font-size=%2212%22>Error</text></svg>'">
+                    <div class="flex-1">
+                        <p class="font-semibold mb-1">Вопрос ${index + 1}</p>
+                        <p class="text-sm text-[var(--muted)] mb-1 truncate">${q.task}</p>
+                        <p class="text-sm"><span class="text-[var(--accent)]">Правильный ответ:</span> ${correctAnswer}</p>
+                    </div>
+                `;
+                dom.previewList.appendChild(item);
+            });
+            dom.previewSection.classList.remove('hidden');
         }
 
         // === Puzzle ===
@@ -743,21 +805,31 @@
 
         // === Logic ===
         async function loadFromURL(url) {
-            showScreen(dom.screenLoading);
+            // Show loading only if we are transitioning from start
+            // But here we are on start screen, just show status inside preview area
+            dom.previewSection.classList.remove('hidden');
+            dom.previewList.innerHTML = '<div class="text-center text-[var(--muted)] p-4">Загрузка заданий...</div>';
+
             try {
                 const res = await fetch(url);
                 if (!res.ok) throw new Error(`Ошибка сети: ${res.status}`);
                 const text = await res.text();
                 state.questions = parseXML(text);
                 if (state.questions.length === 0) throw new Error('Вопросы не найдены');
-                startTest();
+                
+                // Render preview immediately
+                renderPreview();
             } catch (err) {
-                alert('Ошибка загрузки: ' + err.message);
-                showScreen(dom.screenStart);
+                dom.previewList.innerHTML = `<div class="text-center text-[var(--danger)] p-4">Ошибка загрузки: ${err.message}</div>`;
+                dom.previewSection.classList.remove('hidden');
             }
         }
 
         function startTest() {
+            if (state.questions.length === 0) {
+                showError('Ошибка: вопросы не загружены. Проверьте параметр ?file= в URL.');
+                return;
+            }
             state.current = 0;
             state.answers = [];
             showScreen(dom.screenTest);
@@ -773,6 +845,15 @@
         function init() {
             const urlFile = new URLSearchParams(location.search).get('file');
 
+            // Load XML immediately to show preview
+            if (urlFile) {
+                loadFromURL(urlFile);
+            } else {
+                // Show message in preview area that no file is loaded
+                dom.previewSection.classList.remove('hidden');
+                dom.previewList.innerHTML = '<div class="text-center text-[var(--warning)] p-4">Не указан файл теста в URL (?file=...)</div>';
+            }
+
             dom.btnStartTest.addEventListener('click', () => {
                 const surname = dom.inputSurname.value.trim();
                 const name = dom.inputName.value.trim();
@@ -781,15 +862,10 @@
                     showError('Пожалуйста, введите фамилию и имя');
                     return;
                 }
-                
-                if (!urlFile) {
-                    showError('Ошибка: в URL не указан файл теста (?file=...)');
-                    return;
-                }
 
                 state.student.surname = surname;
                 state.student.name = name;
-                loadFromURL(urlFile);
+                startTest();
             });
 
             dom.btnShuffle.addEventListener('click', shufflePuzzle);
@@ -808,6 +884,7 @@
                 dom.inputSurname.value = '';
                 dom.inputName.value = '';
                 state.student = { surname: '', name: '' };
+                // Questions remain loaded in state
             });
         }
 
