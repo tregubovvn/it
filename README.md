@@ -1,5 +1,6 @@
 https://tregubovvn.github.io/it/index.html?file=https://tregubovvn.github.io/it/sm/1/test1.xml
 
+https://tregubovvn.github.io/it/index.html?file=https://tregubovvn.github.io/it/sm/2/1.xml
 # Приложение для тестирования студентов: Сборка изображений
 
 Веб-приложение для проведения интерактивных тестов, где студенту необходимо собрать изображение из фрагментов (пазл) и выбрать правильное название объекта. Результат оценивается на основе правильности ответа и затраченного времени.
