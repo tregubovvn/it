@@ -1,0 +1,64 @@
+<test>
+  <question>
+    <image>https://tregubovvn.github.io/it/sm/2/1.png</image>
+    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="0">
+      <answer>Продольная</answer>
+      <answer>Поперечная</answer>
+      <answer>Перекрестная</answer>
+      <answer>Безригельная</answer>
+    </answers>
+  </question>
+
+  <question>
+    <image>https://tregubovvn.github.io/it/sm/2/2.png</image>
+    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="1">
+      <answer>Продольная</answer>
+      <answer>Поперечная</answer>
+      <answer>Перекрестная</answer>
+      <answer>Безригельная</answer>
+    </answers>
+  </question>
+
+  <question>
+    <image>https://tregubovvn.github.io/it/sm/2/3.png</image>
+    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="2">
+      <answer>Продольная</answer>
+      <answer>Поперечная</answer>
+      <answer>Перекрестная</answer>
+      <answer>Безригельная</answer>
+    </answers>
+  </question>
+
+  <question>
+    <image>https://tregubovvn.github.io/it/sm/2/4.png</image>
+    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="3">
+      <answer>Продольная</answer>
+      <answer>Поперечная</answer>
+      <answer>Перекрестная</answer>
+      <answer>Безригельная</answer>
+    </answers>
+  </question>
+
+
+  
+</test>
