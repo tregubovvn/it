@@ -1,5 +1,4 @@
 <test>
-
 <question>
     <image>https://tregubovvn.github.io/it/logistics/1.png</image>
     <task>Уважите тип складского оборудования <task>
@@ -33,6 +32,7 @@
       <answer> Ричтрак</answer>
     </answers>
   </question>
+    
 <question>
     <image>https://tregubovvn.github.io/it/logistics/3.png</image>
     <task>Уважите тип складского оборудования <task>
@@ -48,6 +48,7 @@
       <answer> Ручной гидравлический штабелер</answer>
       <answer> Ричтрак</answer>
     </answers>
+        
   </question>
 <question>
     <image>https://tregubovvn.github.io/it/logistics/4.png</image>
@@ -65,6 +66,7 @@
       <answer> Ричтрак</answer>
     </answers>
   </question>
+    
 <question>
     <image>https://tregubovvn.github.io/it/logistics/5.png</image>
     <task>Уважите тип складского оборудования <task>
@@ -81,6 +83,7 @@
       <answer> Ричтрак</answer>
     </answers>
   </question>
+    
 <question>
     <image>https://tregubovvn.github.io/it/logistics/6.png</image>
     <task>Уважите тип складского оборудования <task>
@@ -96,6 +99,7 @@
       <answer> Ручной гидравлический штабелер</answer>
       <answer> Ричтрак</answer>
     </answers>
+        
 </test>
 
 
