@@ -1,114 +1,104 @@
-<test>
-  <question>
-    <image>https://tregubovvn.github.io/it/sm/2/1.png</image>
-    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+   <test>
+<question>
+    <image>https://tregubovvn.github.io/it/logistics/1.png</image>
+    <task>Уважите тип складского оборудования <task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
     <timeGood>120</timeGood>
     <answers correct="0">
-      <answer>Продольная</answer>
-      <answer>Поперечная</answer>
-      <answer>Перекрестная</answer>
-      <answer>Безригельная</answer>
+      <answer> Тележка гидравлическая </answer>
+      <answer> Тележка электрическая </answer>
+      <answer> Самоходная тележка </answer>
+      <answer> Ножничная тележка </answer>
+      <answer> Ручной гидравлический штабелер </answer>
+      <answer> Ричтрак </answer>
     </answers>
   </question>
 
-  <question>
-    <image>https://tregubovvn.github.io/it/sm/2/2.png</image>
-    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+<question>
+    <image>https://tregubovvn.github.io/it/logistics/2.png</image>
+    <task>Уважите тип складского оборудования <task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
     <timeGood>120</timeGood>
     <answers correct="1">
-      <answer>Продольная</answer>
-      <answer>Поперечная</answer>
-      <answer>Перекрестная</answer>
-      <answer>Безригельная</answer>
+      <answer> Тележка гидравлическая</answer>
+      <answer> Тележка электрическая</answer>
+      <answer> Самоходная тележка</answer>
+      <answer> Ножничная тележка</answer>
+      <answer> Ручной гидравлический штабелер</answer>
+      <answer> Ричтрак</answer>
     </answers>
   </question>
-
-  <question>
-    <image>https://tregubovvn.github.io/it/sm/2/3.jpg</image>
-    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+        
+<question>
+    <image>https://tregubovvn.github.io/it/logistics/3.png</image>
+    <task>Уважите тип складского оборудования <task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
     <timeGood>120</timeGood>
     <answers correct="2">
-      <answer>Продольная</answer>
-      <answer>Поперечная</answer>
-      <answer>Перекрестная</answer>
-      <answer>Безригельная</answer>
+      <answer> Тележка гидравлическая</answer>
+      <answer> Тележка электрическая</answer>
+      <answer> Самоходная тележка</answer>
+      <answer> Ножничная тележка</answer>
+      <answer> Ручной гидравлический штабелер</answer>
+      <answer> Ричтрак</answer>
     </answers>
+        
   </question>
-
-  <question>
-    <image>https://tregubovvn.github.io/it/sm/2/4.jpg</image>
-    <task>Уважите какой тип ригельной системы приведен на рисунке.</task>
+<question>
+    <image>https://tregubovvn.github.io/it/logistics/4.png</image>
+    <task>Уважите тип складского оборудования <task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
     <timeGood>120</timeGood>
     <answers correct="3">
-      <answer>Продольная</answer>
-      <answer>Поперечная</answer>
-      <answer>Перекрестная</answer>
-      <answer>Безригельная</answer>
+      <answer> Тележка гидравлическая</answer>
+      <answer> Тележка электрическая</answer>
+      <answer> Самоходная тележка</answer>
+      <answer> Ножничная тележка</answer>
+      <answer> Ручной гидравлический штабелер</answer>
+      <answer> Ричтрак</answer>
     </answers>
   </question>
+    
+<question>
+    <image>https://tregubovvn.github.io/it/logistics/5.png</image>
+    <task>Уважите тип складского оборудования <task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="4">
+      <answer> Тележка гидравлическая</answer>
+      <answer> Тележка электрическая</answer>
+      <answer> Самоходная тележка</answer>
+      <answer> Ножничная тележка</answer>
+      <answer> Ручной гидравлический штабелер</answer>
+      <answer> Ричтрак</answer>
+    </answers>
+  </question>
+    
+<question>
+    <image>https://tregubovvn.github.io/it/logistics/6.png</image>
+    <task>Уважите тип складского оборудования <task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="5">
+      <answer> Тележка гидравлическая</answer>
+      <answer> Тележка электрическая</answer>
+      <answer> Самоходная тележка</answer>
+      <answer> Ножничная тележка</answer>
+      <answer> Ручной гидравлический штабелер</answer>
+      <answer> Ричтрак</answer>
+    </answers>
 
-
-  
 </test>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
