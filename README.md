@@ -1,3 +1,5 @@
+https://tregubovvn.github.io/it/index.html?file=https://tregubovvn.github.io/it/kt/1.xml
+
 https://tregubovvn.github.io/it/index.html?file=https://tregubovvn.github.io/it/sm/1/test1.xml
 
 https://tregubovvn.github.io/it/index.html?file=https://tregubovvn.github.io/it/sm/2/1.xml
