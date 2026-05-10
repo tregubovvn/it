@@ -1,0 +1,66 @@
+<test>
+  <question>
+    <image>https://tregubovvn.github.io/it/kt/1.jpg</image>
+    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="0">
+      <answer>Государственный Эрмитаж </answer>
+      <answer>Дворцово-парковый ансамбль Петергоф </answer>
+      <answer>Исаакиевский собор </answer>
+      <answer>Храм Спаса на Крови </answer>
+    </answers>
+  </question>
+
+    <question>
+    <image>https://tregubovvn.github.io/it/kt/2.jpg</image>
+    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="1">
+      <answer>Государственный Эрмитаж </answer>
+      <answer>Дворцово-парковый ансамбль Петергоф </answer>
+      <answer>Исаакиевский собор </answer>
+      <answer>Храм Спаса на Крови </answer>
+    </answers>
+  </question>
+
+    <question>
+    <image>https://tregubovvn.github.io/it/kt/3.jpg</image>
+    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="2">
+      <answer>Государственный Эрмитаж </answer>
+      <answer>Дворцово-парковый ансамбль Петергоф </answer>
+      <answer>Исаакиевский собор </answer>
+      <answer>Храм Спаса на Крови </answer>
+    </answers>
+  </question>
+
+    <question>
+    <image>https://tregubovvn.github.io/it/kt/4.jpg</image>
+    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <rows>3</rows>
+    <cols>3</cols>
+    <timeExcellent>60</timeExcellent>
+    <timeGood>120</timeGood>
+    <answers correct="3">
+      <answer>Государственный Эрмитаж </answer>
+      <answer>Дворцово-парковый ансамбль Петергоф </answer>
+      <answer>Исаакиевский собор </answer>
+      <answer>Храм Спаса на Крови </answer>
+    </answers>
+  </question>
+
+
+
+
+  
+</test>
