@@ -1,7 +1,7 @@
 <test>
   <question>
     <image>https://tregubovvn.github.io/it/kt/1.jpg</image>
-    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <task>Укажите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
@@ -16,7 +16,7 @@
 
     <question>
     <image>https://tregubovvn.github.io/it/kt/2.jpg</image>
-    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <task>Укажите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
@@ -31,7 +31,7 @@
 
     <question>
     <image>https://tregubovvn.github.io/it/kt/3.jpg</image>
-    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <task>Укажите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
@@ -46,7 +46,7 @@
 
     <question>
     <image>https://tregubovvn.github.io/it/kt/4.jpg</image>
-    <task>Уважите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
+    <task>Укажите какая из достопримечательностей Санкт-Петербурга приведена на рисунке?</task>
     <rows>3</rows>
     <cols>3</cols>
     <timeExcellent>60</timeExcellent>
